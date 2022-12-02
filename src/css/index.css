@@ -49,7 +49,7 @@ main .editIcon:hover{
     opacity: 0.5;
 }
 
-form input, button, select{
+form input, button, select, textarea, table{
     width: 70%;
     padding: 15px;
     font-family: 'Montserrat', sans-serif;
@@ -60,6 +60,10 @@ form input, button, select{
     color: white;
     outline: none;
     font-size: 15px;
+}
+
+.hiddenClass {
+    display: none;
 }
 
 form label{

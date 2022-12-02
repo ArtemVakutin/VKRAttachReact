@@ -13,7 +13,7 @@ class Registration extends React.Component{
     render() {
         return (
             <div>
-                <RegistrationForm pYears={this.props.pYears} pFaculties = {this.props.pFaculties}/>
+                <RegistrationForm pState={this.props.pState}/>
             </div>
         )
     }

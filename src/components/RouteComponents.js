@@ -1,52 +1,52 @@
 import React from 'react';
-import axios from "axios";
-import NavBar from "./navbar";
-import About from "./pages/about";
-import SignUp from "./pages/signup";
-import Blogs from "./pages/blogs";
+import UserNavBar from "./routebars/UserNavBar";
+import Orders from "./user/pages/Orders";
+import ModifyUser from "./user/pages/ModifyUser";
+import Docs from "./user/pages/Docs";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import RegisterBar from "./registerbar";
-import Authorization from "./authorization/Authorization";
-import Registration from "./authorization/Registration";
+import RegisterBar from "./routebars/UserRegisterBar";
+import Authorization from "./user/authorization/Authorization";
+import Registration from "./user/registration/Registration";
+import Logout from "./user/pages/Logout";
 
 
-class RouteComponents extends React.Component{
+class RouteComponents extends React.Component {
 
     constructor(props) {
         super(props);
     }
 
 
-
-
     render() {
-        // console.log("массив юзверей")
-        // console.log("App userAuthorized: " + this.state.userAuthorized);
-        //
-        //
-        // console.log("App faculties: " + this.state.faculties.length + this.state.faculties)
+        console.log("ALL STATE :" + this.props.pState.user + this.props.pState.userAuthorized + this.props.pState.faculties);
         if (this.props.pUserAuthorized) {
             return (
-                <Router>
-                    <NavBar/>
-                    <Routes>
-                        {/*<Route exact path='/' exact element={<Home />} />*/}
-                        <Route path='/about' element={<About/>}/>
-                        <Route path='/blogs' element={<Blogs/>}/>
-                        <Route path='/sign-up' element={<SignUp/>}/>
-                    </Routes>
-                </Router>)
+                <div>
+                    <div>Добрый
+                        день, {this.props.pState.user.get('name')} {this.props.pState.user.get('patronymic')}</div>
+                    <Router>
+                        <UserNavBar/>
+                        <Routes>
+                            {/*<Route exact path='/' exact element={<Docs />} />*/}
+                            <Route path='/order' element={<Orders pGetOrders={this.props.pGetOrders} pState={this.props.pState}/>}/>
+                            <Route path='/docs' element={<Docs/>}/>
+                            <Route path='/modify' element={<ModifyUser pState={this.props.pState}/>}/>
+                            <Route path='/userlogout' element={<Logout pLogout={this.props.pLogout}/>}/>
+                        </Routes>
+                    </Router></div>)
         }
         return (
-            <Router>
+            <div><Router>
                 <RegisterBar/>
                 <Routes>
                     {/*<Route exact path='/' element={<Authorization makeAuthorized={this.props.pMakeAuthorized}/>}/>*/}
-                    <Route path='/registration' element={<Registration pYears={this.props.pYears} pFaculties = {this.props.pFaculties}/>}/>
-                    <Route path='/authorization' element={<Authorization makeAuthorized={this.props.pMakeAuthorized}/>}/>} />
+                    <Route path='/registration'
+                           element={<Registration pState={this.props.pState}/>}/>
+                    <Route path='/authorization'
+                           element={<Authorization makeAuthorized={this.props.pMakeAuthorized}/>}/>} />
                     {/*<Route path='/registration' element={<Registration/>} />*/}
                 </Routes>
-            </Router>)
+            </Router></div>)
 
     }
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import {NavLink as NavLink} from "react-router-dom";
 
-const RegisterBar = () => {
+const UserRegisterBar = () => {
     return (
         <>
             <div className="Nav">
@@ -22,4 +22,4 @@ const RegisterBar = () => {
     );
 };
 
-export default RegisterBar;
+export default UserRegisterBar;
